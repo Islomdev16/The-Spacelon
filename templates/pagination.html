@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+
+    {% if is_paginated %}
+    
+      {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-danger mb-4">First</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-info mb-4">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a href="?page={{num}}" class="btn btn-info mb-4">{{num}}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a href="?page={{num}}" class="btn btn-outline-info mb-4">{{num}}</a>
+        {% endif %}
+      {% endfor %}
+      
+      {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}" class="btn btn-outline-info mb-4">Next</a>
+        <a href="?page={{page_obj.paginator.num_pages}}" class="btn btn-danger mb-4">Last</a>
+      {% endif %}
+        
+
+    {% endif %}
+
+</body>
+</html>

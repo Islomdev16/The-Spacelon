@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+		<div id="body">
+			<div class="header">
+				<div>
+					<h1>Blog</h1>
+					<div class="article">
+						{% for blog in blogs %}
+							<ul>
+								<li>
+									<a href="{% url 'singlepost' blog.pk %}"><img src="{{blog.image.url}}" style="width: 25rem; height: 14rem;"></a>
+									<h1>{{blog.title}}</h1>
+									<span>{{blog.date_posted | date:"F d, Y"}}</span>
+									<p>{{blog.text | truncatewords:25}}</p>
+									<a href="{% url 'singlepost' blog.pk %}" class="more">Read More</a>
+								</li>
+							</ul>
+						{% endfor %}
+							
+					</div>
+					<div class="sidebar">
+						<ul>
+							<li>
+								<h1>FEATURED POSTS</h1>
+								<a href="#"><img src="{% static 'images/moon-satellite.jpg' %}" alt=""></a>
+								<h2>SOYUZ TMA-M</h2>
+								<span>FEBRUARY 6, 2023</span>
+							</li>
+							<li>
+								<h1>RECENT POSTS</h1>
+								<ul>
+									{% for sb in single_blogs %}
+									
+										<li>
+											<a href="{% url 'singlepost' sb.id %}"><img src="{{sb.image.url}}" height="45rem"></a>
+											<h2>{{sb.title}}</h2>
+											<span>{{sb.date_posted | date:"F d, Y"}}</span>
+										</li>									
+									
+									{% endfor %}
+								</ul>		
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+{% endblock content %}

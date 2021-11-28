@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+		<div id="body">
+			<div class="header">
+				<div>
+					<h1>Proj 1</h1>
+					<img src="{{project.image.url}}" style="width: 38rem; height: 18rem">
+					<h2>{{project.title}}</h2>
+					<p>{{project.text}}</p>
+				</div>
+			</div> 
+		</div>
+
+{% endblock content %}

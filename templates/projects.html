@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}        
+        <div id="body">
+			<div class="header">
+				<div>
+					<h1>Projects</h1>
+
+					{% for project in projects %}
+						<ul>
+							<li> 
+								<a href="{% url 'proj1' project.pk %}"><img src="{{project.image.url}}" style="width: 23rem;" height="200"></a>
+								<div style="margin-left: 43%; margin-top: -22%;">
+									<h1>{{project.title}}</h1>
+									<span style="color: aliceblue;">{{project.date_posted | date:"F d, Y"}}</span>
+									<hr>
+									<p>{{project.text | truncatewords:25}}</p>
+									<a href="{% url 'proj1' project.pk %}" class="more">Read More</a>
+								</div>
+							</li>
+						</ul>
+					{% endfor %}
+					
+					
+
+					{% include "pagination.html" %}
+						
+
+				</div>
+			</div>
+		</div>
+
+{% endblock content %}
